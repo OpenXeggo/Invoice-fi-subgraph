@@ -1,0 +1,28 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Billing
+    network: celo-alfajores
+    source:
+      address: "0x38399AC5E7d8b75531AC676D649a6451C7a22599"
+      abi: Billing
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Invoice
+       
+      abis:
+        - name: Billing
+          file: ./abis/Billing.json
+      eventHandlers:
+        - event: InvoiceCancelled(uint256)
+          handler: handleInvoiceCancelled
+        - event: InvoiceCreated(uint256,address,address,uint256,address)
+          handler: handleInvoiceCreated
+        - event: InvoicePaid(uint256,address,bool)
+          handler: handleInvoicePaid
+      file: ./src/mapping.ts

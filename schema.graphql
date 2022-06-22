@@ -1,0 +1,12 @@
+type Invoice @entity {
+  id: ID!
+  invoiceID: BigInt! # uint256
+  invoiceCreator:Bytes!
+  tokenAddress:Bytes!
+  tokenAmountInWei:BigInt!
+  receiver:Bytes!
+  isPaid:Boolean!
+  isCancelled:Boolean!
+  createdAt:BigInt!
+  PaidAt:BigInt!
+}
